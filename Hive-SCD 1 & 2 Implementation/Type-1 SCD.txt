@@ -1,0 +1,20 @@
+STEPS TO FOLLOW TO IMPLEMENT TYPE1-SCD IN HIVE
+=================================================
+
+1. Two tables need to be used to implement SCD1 type(eg, stg_tbl,final_tbl) in Hive and create those tables.
+
+2. Load/Overwrite the Hive table(stg_tbl) using Sqoop or some other tool.
+
+3. First time, there is no data in final_tbl, now run the below query which will insert/overwrite all the rows from stg_tbl to final_tbl
+
+	-> insert overwrite table final_tbl select * from final_tbl where id not in (select id from stg_tbl) union select * from stg_tbl;
+
+4. Now Load/Overwrite the Hive table(stg_tbl) with only updated data using Sqoop or some other tool. for example intially we have loaded with 4 fours, now all rows are removed from the stg_tbl and load only with the updated 2 rows.
+
+5. Again run the same query , which will take the updates rows from stg_tbl + (all rows from final_tbl - ignoring the rows present in stg_tbl in final_tbl)
+
+	-> insert overwrite table final_tbl select * from final_tbl where id not in (select id from stg_tbl) union select * from stg_tbl;
+
+6.final-tbl now will contains all rows with recent changes data.
+
+
