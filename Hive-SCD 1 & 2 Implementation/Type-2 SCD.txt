@@ -1,0 +1,15 @@
+STEPS TO FOLLOW TO IMPLEMENT TYPE 2-SCD IN HIVE
+=================================================
+1. Please follow the step 1 and Step 2 in SCD-1 implementation
+
+2. Use the below query for SCD-2 implememntation
+
+Insert overwrite table final_tbl
+
+select a.idColumn,coalesce(b.ver1+row_number() over(partition by a.idColumn),row_number() over(partition by a.idColumn)) as verColumn,a.Column1,a.Column2,a.Column3 from stg_tbl a
+
+left outer join (select idColumn,max(verColumn) as ver1 from final_tbl group by idColumn) as b on a.idColumn=b.idColumn
+
+union
+
+select idColumn,verColumn,Column1,Column2,Column3 from final_tbl;
