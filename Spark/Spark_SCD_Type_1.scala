@@ -1,4 +1,4 @@
-/*SCD Type-1 Implementation in Spark*/
+/*SCD Type-1 Implementation in Spark */
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.DataFrameReader
 import org.apache.spark.sql.types._
