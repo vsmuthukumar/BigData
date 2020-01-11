@@ -1,4 +1,4 @@
-/*Example - 1, this example is refined in example 2
+/* Example - 1, this example is refined in example 2
 object FileMatcher {
   private def filesHere = (new java.io.File(".")).listFiles
   def filesEnding(query: String) =
