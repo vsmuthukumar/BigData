@@ -1,4 +1,4 @@
-STEPS TO FOLLOW TO IMPLEMENT TYPE1-SCD IN HIVE
+STEPS TO FOLLOW TO IMPLEMENT TYPE 1-SCD IN HIVE
 =================================================
 
 1. Two tables need to be used to implement SCD1 type(eg, stg_tbl,final_tbl) in Hive and create those tables.
